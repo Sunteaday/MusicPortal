@@ -1,0 +1,8 @@
+﻿@model SelectedRole
+@using MusicPortal.Models.ViewModels
+
+<div>
+    @Html.HiddenFor(m => m.Id)
+    @Html.CheckBoxFor(m => m.IsSelected, new { disabled = "disabled" })
+    @Html.DisplayFor(m => m.Name)
+</div>

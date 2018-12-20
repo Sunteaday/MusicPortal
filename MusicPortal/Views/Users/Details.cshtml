@@ -1,0 +1,21 @@
+﻿@model UserVM
+@using MusicPortal.Models.ViewModels
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h3>@Html.DisplayNameFor(m => m.Login): @Html.DisplayFor(m => m.Login)</h3>
+
+    <fieldset>
+        <legend>@Html.DisplayNameFor(m => m.Roles)</legend>
+        @Html.DisplayFor(m => m.Roles)
+    </fieldset>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

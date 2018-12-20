@@ -1,0 +1,40 @@
+﻿@model IEnumerable<MusicPortal.Models.Song>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Songs - All</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FileName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var song in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => song.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => song.FileName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = song.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = song.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = song.Id })
+            </td>
+        </tr>
+    }
+
+</table>

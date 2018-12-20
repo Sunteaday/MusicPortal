@@ -1,0 +1,14 @@
+﻿@model  MusicPortal.Models.ViewModels.RegisterVM
+@{
+    ViewBag.Title = "Registration";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    @Html.AntiForgeryToken()
+    @Html.EditorForModel()
+    <input type="submit" />
+}
+

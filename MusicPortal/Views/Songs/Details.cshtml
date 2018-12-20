@@ -1,0 +1,22 @@
+﻿@model MusicPortal.Models.ViewModels.SongVM
+
+@{
+    ViewBag.Title = "Details";
+}
+@section Head
+{
+    @Styles.Render("~/Content/GenresPartial")
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Song</h4>
+
+    <h3>@Html.DisplayNameFor(m => m.Name): @Html.DisplayFor(m => m.Name)</h3>
+    @Html.Partial("GenresPartial", Model.Genres)
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "All")
+</p>

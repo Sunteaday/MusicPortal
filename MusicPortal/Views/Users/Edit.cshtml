@@ -1,0 +1,32 @@
+﻿@model MusicPortal.Models.ViewModels.UserVM
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div>
+        @Html.HiddenFor(m => m.Id)
+        <fieldset>
+            <legend>@Html.DisplayNameFor(m => m.Login)</legend>
+            @Html.EditorFor(m => m.Login)
+            @Html.ValidationMessageFor(m => m.Login)
+        </fieldset>
+
+        <fieldset>
+            <legend>@Html.DisplayNameFor(m => m.Roles)</legend>
+            @Html.EditorFor(m => m.Roles)
+            @Html.ValidationMessageFor(m => m.Roles)
+        </fieldset>
+        <input type="submit" />
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

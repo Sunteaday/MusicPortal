@@ -1,0 +1,35 @@
+﻿@model MusicPortal.Models.ViewModels.EditSongVM
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm("Edit", "Songs", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(m => m.Id)
+    <fieldset>
+        <legend>@Html.DisplayNameFor(m => m.Name)</legend>
+        @Html.EditorFor(m => m.Name)
+        @Html.ValidationMessageFor(m => m.Name)
+    </fieldset>
+
+    <fieldset>
+        <legend>@Html.DisplayNameFor(m => m.Genres)</legend>
+        @Html.EditorFor(m => m.Genres)
+        @Html.ValidationMessageFor(m => m.Genres)
+    </fieldset>
+    <fieldset>
+        <legend> @Html.DisplayNameFor(m => m.File)</legend>
+        <input type="file" name="@Html.DisplayNameFor(m => m.File)" />
+        @Html.ValidationMessageFor(m => m.File)
+    </fieldset>
+    <input type="submit" />
+}
+
+<div>
+    @Html.ActionLink("Back to List", "All")
+</div>

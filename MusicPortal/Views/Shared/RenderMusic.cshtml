@@ -1,0 +1,7 @@
+﻿@using MusicPortal.Models
+@model IEnumerable<Song>
+
+@foreach (Song song in Model)
+{
+    <p class="song">@Html.ActionLink(song.Name, "Song", new { name = song.Name }, null)</p>
+}

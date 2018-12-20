@@ -1,0 +1,17 @@
+﻿@model SongVM
+@using MusicPortal.Models.ViewModels
+
+@{
+    ViewBag.Title = "Song";
+}
+@section head
+{
+    @Styles.Render("~/Content/GenresPartial")
+}
+
+<h2>@Model.Name</h2>
+<div>
+    @Html.Partial("GenresPartial", Model.Genres)
+    @Html.ActionLink("Download", "GetSongFile", new { name = Model.Name }, null)
+</div>  
+

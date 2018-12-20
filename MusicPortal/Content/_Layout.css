@@ -1,0 +1,38 @@
+﻿body {
+    background: #484848;
+    color: lightgray;
+}
+
+a {
+    color: white;
+}
+
+body {
+    margin: 0;
+}
+
+nav {
+    margin-bottom: 10px;
+    border-bottom: 1px solid white;
+}
+
+main {
+    padding: 0 10px 0 10px;
+}
+
+.menu {
+    display: flex;
+    justify-content: flex-end;
+    margin: 0;
+    padding: 5px;
+    font-size: 1.5rem;
+}
+
+    .menu > li {
+        list-style-type: none;
+        margin: 0px 5px 0 5px;
+    }
+
+        .menu > li:first-child {
+            margin: auto auto auto 1rem;
+        }

@@ -1,0 +1,40 @@
+﻿@model MusicPortal.Models.ViewModels.SongVM
+
+@{
+    ViewBag.Title = "Upload Song";
+}
+
+<h2>UploadSong</h2>
+
+<div>
+    @Html.ValidationSummary(true)
+    @using (Html.BeginForm("Create", "Songs", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <fieldset>
+            <legend>@Html.DisplayNameFor(m => m.Name)</legend>
+            <div>
+                @Html.EditorFor(m => m.Name)
+                @Html.ValidationMessageFor(m => m.Name)
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>@Html.DisplayNameFor(m => m.Genres)</legend>
+
+            @Html.EditorFor(m => m.Genres)
+        </fieldset>
+        <fieldset>
+            <legend>
+                @Html.LabelFor(m => m.File)
+            </legend>
+            @Html.TextBoxFor(m => m.File, new { type = "file" })
+            @Html.ValidationMessageFor(m => m.File)
+        </fieldset>
+        <div>
+            <input type="submit" />
+        </div>
+    }
+</div>
+

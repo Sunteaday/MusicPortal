@@ -1,0 +1,8 @@
+﻿@model SelectedGenre
+@using MusicPortal.Models.ViewModels
+
+<div>
+    @Html.HiddenFor(m => m.Id)
+    @Html.CheckBoxFor(m => m.IsSelected)
+    @Html.DisplayTextFor(m => m.Name)
+</div>

@@ -1,0 +1,12 @@
+﻿@model IEnumerable<SongVM>
+
+@using MusicPortal.Models.ViewModels
+@{
+    ViewBag.Title = "Index";
+}
+<h1>Songs:</h1>
+@foreach (SongVM vm in Model)
+{
+    <h2>@Html.ActionLink(vm.Name, "Song", new { name = vm.Name })</h2>
+}
+

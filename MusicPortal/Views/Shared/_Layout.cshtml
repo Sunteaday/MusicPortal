@@ -1,0 +1,37 @@
+﻿@using MusicPortal.Models
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/_layout")
+    @RenderSection("head", required: false)
+</head>
+<body>
+    <div>
+        <nav>
+            <ul class="menu">
+                @using MusicPortal.Infrastructure
+
+
+                @{
+                    Session["UserMenu"] = Session["UserMenu"] ?? MenuProvider.BuildMenu(null);
+                }
+                @foreach (var menuItem in Session["UserMenu"] as IEnumerable<MenuItem>)
+                {
+                    <li>@Html.ActionLink(menuItem.VisibleName, menuItem.Action, menuItem.Controller)</li>
+                }
+            </ul>
+        </nav>
+        <main>
+            @RenderBody()
+        </main>
+        <footer></footer>
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/jqueryval")
+        @Scripts.Render("~/bundles/jqueryvalunobtrusive")
+        @RenderSection("scripts", required: false)
+    </div>
+</body>
+</html>
