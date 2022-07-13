@@ -13,10 +13,21 @@ namespace MusicPortal.App_Start
     {
         protected override void Seed(MusicPortalDbContext context)
         {
+
+            Genre ambientGenre = new Genre() { Name = "Ambient" };
+            Genre hiphopGenre = new Genre() { Name = "Hip-Hop" };
+            Genre instrumentalGenre = new Genre() { Name = "Instrumental" };
+            Genre soundtrackGenre = new Genre() { Name = "Soundtrack" };
+            Genre pianoGenre = new Genre() { Name = "Piano" };
+
             context.Genres.AddRange(new List<Genre>()
             {
+                ambientGenre,
+                hiphopGenre,
+                instrumentalGenre,
+                soundtrackGenre,
+                pianoGenre,
                 new Genre() { Name = "Alternative" },
-                new Genre() { Name = "Ambient" },
                 new Genre() { Name = "Blues" },
                 new Genre() { Name = "Background" },
                 new Genre() { Name = "Chanson" },
@@ -30,10 +41,8 @@ namespace MusicPortal.App_Start
                 new Genre() { Name = "Folk" },
                 new Genre() { Name = "Funk" },
                 new Genre() { Name = "Hardcore" },
-                new Genre() { Name = "Hip-Hop" },
                 new Genre() { Name = "House" },
                 new Genre() { Name = "Industrial" },
-                new Genre() { Name = "Instrumental" },
                 new Genre() { Name = "Jazz" },
                 new Genre() { Name = "Metal" },
                 new Genre() { Name = "Minimal" },
@@ -45,10 +54,10 @@ namespace MusicPortal.App_Start
                 new Genre() { Name = "R&B" },
                 new Genre() { Name = "Rock" },
                 new Genre() { Name = "Soul" },
-                new Genre() { Name = "Soundtrack" },
                 new Genre() { Name = "Techno" },
                 new Genre() { Name = "Trance" }
             });
+
 
             UserRole authorized = new UserRole() { Name = "Admin" };
             UserRole admin = new UserRole() { Name = "Authorized" };
@@ -66,6 +75,20 @@ namespace MusicPortal.App_Start
                 Password = CryptoService.ComputeMD5Hash(Encoding.Unicode.GetBytes((salt + "admin"))).ToHexString(),
                 Salt = salt,
                 Roles = new List<UserRole>() { authorized, admin }
+            });
+
+            context.Songs.Add(new Song()
+            {
+                Name = "Lo-fi chill cover OST",
+                FileName = "ba814cc1-5de9-494c-b46e-c171e5fec6ab.mp3",
+                Genres = new List<Genre>() { ambientGenre, hiphopGenre, soundtrackGenre }
+            });
+
+            context.Songs.Add(new Song()
+            {
+                Name = "After Dark piano cover",
+                FileName = "ceas4cc1-5de9-494c-b46e-c171e5feceas.mp3",
+                Genres = new List<Genre>() { instrumentalGenre, pianoGenre }
             });
 
             context.SaveChanges();
