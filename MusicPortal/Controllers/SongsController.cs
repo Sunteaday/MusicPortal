@@ -69,14 +69,22 @@ namespace MusicPortal.Controllers
         [HttpPost]
         [ActionName("Create")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> CreateConfirm([Bind(Include = "Name,File,Genres")]SongVM songVM)
+        public async Task<ActionResult> CreateConfirm([Bind(Include = "Name,File,Genres")] SongVM songVM)
         {
             if (!Session.UserHasRole("Authorized"))
                 return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
 
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError(String.Empty, "Some field are not filled");
+
+                songVM.Genres = (await db.Genres.ToListAsync()).Select(g => g.ToViewModel());
+                return View(songVM);
+            }   
+
             if (await db.Songs
-                        .Where(s => s.Name == songVM.Name)
-                        .FirstOrDefaultAsync() != null)
+                    .Where(s => s.Name == songVM.Name)
+                    .FirstOrDefaultAsync() != null)
             {
                 ModelState.AddModelError(String.Empty, "This song is exist");
 
@@ -261,7 +269,7 @@ namespace MusicPortal.Controllers
 
             string filePath = Server.MapPath(song.GetVirtualFilePath());
             System.IO.File.Delete(filePath);
-
+            
             await db.SaveChangesAsync();
 
             return RedirectToAction("All");
